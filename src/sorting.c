@@ -55,49 +55,49 @@ void insertion_sort(int arr[], int n)
 }
 
 // Quick sort
-void partition(int arr[], int low, int high, int *pivot)
+int partition(int arr[], int low, int high)
 {
-    int i = low - 1;
-    int pivot_value = arr[high];
-    for (int j = low; j < high; j++)
+    int pivot = arr[high];
+    int i = (low - 1);
+    for (int j = low; j <= high - 1; j++)
     {
-        if (arr[j] < pivot_value)
+        if (arr[j] < pivot)
         {
             i++;
             swap(&arr[i], &arr[j]);
         }
     }
     swap(&arr[i + 1], &arr[high]);
-    *pivot = i + 1;
+    return (i + 1);
 }
 
 void quick_sort(int arr[], int low, int high)
 {
     if (low < high)
     {
-        int pivot;
-        partition(arr, low, high, &pivot);
-        quick_sort(arr, low, pivot - 1);
-        quick_sort(arr, pivot + 1, high);
+        int pi = partition(arr, low, high);
+        quick_sort(arr, low, pi - 1);
+        quick_sort(arr, pi + 1, high);
     }
 }
 
 // Merge sort
 void merge(int arr[], int left, int mid, int right)
 {
-    int nR = mid - left + 1;
-    int n2 = right - mid;
-    int L[nR], R[n2];
-    for (int i = 0; i < nR; i++)
+    int nL = mid - left + 1;
+    int nR = right - mid;
+    int *L = (int *)malloc(nL * sizeof(int));
+    int *R = (int *)malloc(nR * sizeof(int));
+    for (int i = 0; i < nL; i++)
     {
         L[i] = arr[left + i];
     }
-    for (int j = 0; j < n2; j++)
+    for (int j = 0; j < nR; j++)
     {
         R[j] = arr[mid + 1 + j];
     }
     int i = 0, j = 0, k = left;
-    while (i < nR && j < n2)
+    while (i < nL && j < nR)
     {
         if (L[i] <= R[j])
         {
@@ -111,18 +111,20 @@ void merge(int arr[], int left, int mid, int right)
         }
         k++;
     }
-    while (i < nR)
+    while (i < nL)
     {
         arr[k] = L[i];
         i++;
         k++;
     }
-    while (j < n2)
+    while (j < nR)
     {
         arr[k] = R[j];
         j++;
         k++;
     }
+    free(L);
+    free(R);
 }
 
 void merge_sort(int arr[], int left, int right)

@@ -14,7 +14,7 @@ void selection_sort(int arr[], int n);
 void insertion_sort(int arr[], int n);
 
 // Quick sort
-void partition(int arr[], int low, int high, int *pivot);
+int partition(int arr[], int low, int high);
 void quick_sort(int arr[], int low, int high);
 
 // Merge sort
