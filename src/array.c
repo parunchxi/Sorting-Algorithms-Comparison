@@ -8,6 +8,16 @@ void print_array(int arr[], int n)
     printf("\n");
 }
 
+int *copy_array(int arr[], int n)
+{
+    int *copy = (int *)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++)
+    {
+        copy[i] = arr[i];
+    }
+    return copy;
+}
+
 int *generate_random_array(int size)
 {
     int *arr = (int *)malloc(size * sizeof(int));
