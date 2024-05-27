@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "include/config.h"
 #include "include/sorting.h"
 #include "include/testing.h"
 
