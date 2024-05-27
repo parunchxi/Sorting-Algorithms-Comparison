@@ -68,24 +68,48 @@ void save_sorting_runtimes(TestArray *test_array, int algorithm, int runtimes[])
         fprintf(file, "runtime_avg\n");
     }
     fseek(file, 0, SEEK_SET);
-    // Write sorting runtimes to file
-    fprintf(file, "%d,%d,%d,", test_array->test_id, test_array->size, test_array->type);
+    // Write sorting runtimes to file and print on console
+    fprintf(file, "%d,%d,", test_array->test_id, test_array->size);
+    printf("Test ID: %d\nSize: %d\nType: ", test_array->test_id, test_array->size);
+    switch (test_array->type)
+    {
+    case 0:
+        fprintf(file, "random,");
+        printf("Random\n");
+        break;
+    case 1:
+        fprintf(file, "sorted,");
+        printf("Sorted\n");
+        break;
+    case 2:
+        fprintf(file, "reversed_sorted,");
+        printf("Reversed Sorted\n");
+        break;
+    default:
+        break;
+    }
+    printf("Algorithm: ");
     switch (algorithm)
     {
     case 0:
         fprintf(file, "bubble_sort,");
+        printf("Bubble Sort\n");
         break;
     case 1:
         fprintf(file, "selection_sort,");
+        printf("Selection Sort\n");
         break;
     case 2:
         fprintf(file, "insertion_sort,");
+        printf("Insertion Sort\n");
         break;
     case 3:
         fprintf(file, "quick_sort,");
+        printf("Quick Sort\n");
         break;
     case 4:
         fprintf(file, "merge_sort,");
+        printf("Merge Sort\n");
         break;
     default:
         break;
@@ -94,9 +118,12 @@ void save_sorting_runtimes(TestArray *test_array, int algorithm, int runtimes[])
     for (int i = 0; i < NUM_SORTS; i++)
     {
         fprintf(file, "%d,", runtimes[i]);
+        printf("Runtime %d: %d ms\n", i + 1, runtimes[i]);
         sum += runtimes[i];
     }
     fprintf(file, "%d\n", sum / NUM_SORTS);
+    printf("Average Runtime: %d ms\n", sum / NUM_SORTS);
+    printf("--------------------------------------\n");
     fclose(file);
 }
 
