@@ -7,7 +7,7 @@
 int main()
 {
     int id = START_ID;
-    for (int size = START_SIZE; size < END_SIZE; size += SIZE_STEP)
+    for (int size = START_SIZE; size <= END_SIZE; size += SIZE_STEP)
     {
         // Random array
         for (int i = 0; i < NUM_TESTS; i++)
