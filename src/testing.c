@@ -18,12 +18,20 @@ TestArray *new_test_array(int test_id, int size, int type)
 void save_test_array(TestArray *test_array)
 {
     FILE *file = fopen("../data/test_array.csv", "a+");
-    // if no header, write header
-    if (ftell(file) == 0)
+    if (file == NULL)
+    {
+        perror("Failed to open file");
+        return;
+    }
+    // Check if the file is empty to write the header
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    if (file_size == 0)
     {
         fprintf(file, "test_id,size,type,array\n");
     }
-    // write test array to file
+    fseek(file, 0, SEEK_SET);
+    // Write test array to file
     fprintf(file, "%d,%d,%d,", test_array->test_id, test_array->size, test_array->type);
     for (int i = 0; i < test_array->size; i++)
     {
@@ -33,9 +41,9 @@ void save_test_array(TestArray *test_array)
             fprintf(file, " ");
         }
     }
+    fprintf(file, "\n");
     fclose(file);
 }
-
 int get_bubble_sort_runtime(int arr[], int n)
 {
     clock_t start = clock();
