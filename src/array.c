@@ -18,6 +18,21 @@ int *copy_array(int arr[], int n)
     return copy;
 }
 
+int *generate_array(int size, int type)
+{
+    switch (type)
+    {
+    case 0:
+        return generate_random_array(size);
+    case 1:
+        return generate_sorted_array(size);
+    case 2:
+        return generate_reversed_sorted_array(size);
+    default:
+        return NULL;
+    }
+}
+
 int *generate_random_array(int size)
 {
     int *arr = (int *)malloc(size * sizeof(int));
