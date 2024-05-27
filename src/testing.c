@@ -1,7 +1,18 @@
 #include <time.h>
 #include "../include/array.h"
+#include "../include/testing.h"
 
 // Utility functions for testing
+TestArray *new_test_array(int test_id, int size, int type)
+{
+    TestArray *test_array = (TestArray *)malloc(sizeof(TestArray));
+    test_array->test_id = test_id;
+    test_array->size = size;
+    test_array->type = type;
+    test_array->arr = generate_array(size, type);
+    return test_array;
+}
+
 int get_bubble_sort_runtime(int arr[], int n)
 {
     clock_t start = clock();
