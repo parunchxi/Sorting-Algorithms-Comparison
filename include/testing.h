@@ -1,6 +1,15 @@
 #ifndef TESTING_H
 #define TESTING_H
 
+// Define struct for test array
+typedef struct TestArray
+{
+    int test_id;
+    int size;
+    int type; // 0: random, 1: sorted, 2: reversed sorted
+    int *arr;
+} TestArray;
+
 // Utility functions for testing
 int get_bubble_sort_runtime(int arr[], int n);
 int get_selection_sort_runtime(int arr[], int n);
