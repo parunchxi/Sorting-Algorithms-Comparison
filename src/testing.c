@@ -19,7 +19,7 @@ TestArray *new_test_array(int test_id, int size, int type)
 
 void save_test_array(TestArray *test_array)
 {
-    FILE *file = fopen("../data/test_array.csv", "a+");
+    FILE *file = fopen("data/test_array.csv", "a+");
     if (file == NULL)
     {
         perror("Failed to open file");
@@ -49,7 +49,7 @@ void save_test_array(TestArray *test_array)
 
 void save_sorting_runtimes(TestArray *test_array, int algorithm, int runtimes[])
 {
-    FILE *file = fopen("../data/sorting_runtimes.csv", "a+");
+    FILE *file = fopen("data/sorting_runtimes.csv", "a+");
     if (file == NULL)
     {
         perror("Failed to open file");
