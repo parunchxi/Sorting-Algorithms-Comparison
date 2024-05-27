@@ -12,6 +12,7 @@ typedef struct TestArray
 
 // Utility functions for testing
 TestArray *new_test_array(int test_id, int size, int type);
+void save_test_array(TestArray *test_array);
 int get_bubble_sort_runtime(int arr[], int n);
 int get_selection_sort_runtime(int arr[], int n);
 int get_insertion_sort_runtime(int arr[], int n);
